@@ -1,3 +1,7 @@
+# File directories
+pdf/
+sheets/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
