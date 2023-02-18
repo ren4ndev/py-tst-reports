@@ -1,6 +1,5 @@
 import fitz
 from pathlib import Path
-import json
 import re
 
 
@@ -21,19 +20,15 @@ class ProcessExtraction:
         return processes
 
     def execute(self):
-        notebooks_dict = dict()
+        extracted_data = []
         for path in Path(self.pdf_directory).iterdir():
             print(re.split(r'[_.]', path.parts[-1]))
             pdf_filename = re.split(r'[_.]', path.parts[-1])
-            sheet_filename = 'TST {}/{}/{}.xlsx'.format(
+            sheet_filename = 'TST {}-{}-{}.xlsx'.format(
                 pdf_filename[-4],
                 pdf_filename[-3],
                 pdf_filename[-2]
             )
-            print(sheet_filename)
-
-            value = self._extract(path)
-            notebooks_dict.update({sheet_filename: value})
-
-        with open('result.json', 'w') as file:
-            json.dump(notebooks_dict, file)
+            processes = self._extract(path)
+            extracted_data.append((sheet_filename, processes))
+        return extracted_data
