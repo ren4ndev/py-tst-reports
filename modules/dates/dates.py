@@ -7,6 +7,11 @@ class Dates:
 
     @classmethod
     def get_days_of_the_week(cls):
+        """
+            Método responsável por retornar dias da
+            semana corrente.
+            Obs.: pode ser refatorado para utilizar pandas
+        """
         today = date.today()
         start_of_the_week = today - timedelta(days=today.weekday())
 
