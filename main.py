@@ -29,19 +29,32 @@ class MainScript:
         """
         dates_of_the_week = Dates.get_days_of_the_week()
 
+        # Para testes, caso não haja cadernos do TST na semana atual
+
+        # dates_of_the_week = [
+        #     '13/02/2023',
+        #     '14/02/2023',
+        #     '15/02/2023',
+        #     '16/02/2023',
+        #     '17/02/2023',
+        #     '18/02/2023',
+        #     '19/02/2023'
+        # ]
+
         scraper = NotebookScraper(
             pdf_directory=self.pdf_path,
             start_date=dates_of_the_week[0],
             end_date=dates_of_the_week[-1]
         )
         scraper.execute()
-        extracted_data = ProcessExtraction(
+        (extracted_data, duplicates) = ProcessExtraction(
             pdf_directory=self.pdf_path
         ).execute()
         self._make_sheets_directory()
         SheetsConverter(
             sheets_directory=self.sheets_path,
-            extracted_data=extracted_data
+            extracted_data=extracted_data,
+            duplicates=duplicates
         ).execute()
         self._clear_temporary_files()
 
