@@ -10,6 +10,11 @@ import os
 
 class NotebookScraper():
     def __init__(self, *args, **kwargs):
+        """
+            Instancia driver para raspagem de dados
+            definindo o path de onde os downloads devem ser armazenados,
+            assim como a url onde a raspagem de dados deve ser feita.
+        """
         self.download_path = kwargs.get('pdf_directory')
         options = Options()
         prefs = {'download.default_directory': self.download_path}
@@ -23,6 +28,10 @@ class NotebookScraper():
         self.end_date = kwargs.get('end_date')
 
     def _filter_notebooks(self):
+        """
+            Realiza o filtro de acordo com as datas de início
+            e fim da semana passadas para a classe
+        """
         start_date_input = self.driver.find_element(
             By.ID, 'corpo:formulario:dataIni'
         )
@@ -60,6 +69,10 @@ class NotebookScraper():
         search_button.click()
 
     def _download_notebooks(self):
+        """
+            Realiza o download dos cadernos em resultado
+            do filtro realizado
+        """
         download_buttons = self.driver.find_elements(
             By.CSS_SELECTOR,
             '.bt.af_commandButton'
@@ -73,6 +86,10 @@ class NotebookScraper():
             sleep(1)
 
     def execute(self):
+        """
+            Chama os métodos de filtro e download
+            da classe
+        """
         self.driver.implicitly_wait(1)
         self.driver.get(self.url)
         self._filter_notebooks()

@@ -12,12 +12,21 @@ class MainScript:
         self.sheets_path = r'{}\sheets'.format(os.getcwd())
 
     def _make_sheets_directory(self):
+        '''Cria diretório para armazenar planilhas'''
         os.mkdir(self.sheets_path)
 
     def _clear_temporary_files(self):
+        """
+            Remove diretório de arquivos temporários
+            com dados a serem extraídos
+        """
         shutil.rmtree(self.pdf_path)
 
     def execute(self):
+        """
+            Responsável por executar todos os métodos do script
+            de acordo com os requisitos do projeto
+        """
         dates_of_the_week = Dates.get_days_of_the_week()
 
         scraper = NotebookScraper(
