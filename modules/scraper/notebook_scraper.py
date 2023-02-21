@@ -90,9 +90,12 @@ class NotebookScraper():
             Chama os métodos de filtro e download
             da classe
         """
-        self.driver.implicitly_wait(1)
-        self.driver.get(self.url)
-        self._filter_notebooks()
-        self._download_notebooks()
-
-        self.driver.close()
+        try:
+            self.driver.implicitly_wait(1)
+            self.driver.get(self.url)
+            self._filter_notebooks()
+            self._download_notebooks()
+        except Exception as err:
+            raise err
+        finally:
+            self.driver.close()

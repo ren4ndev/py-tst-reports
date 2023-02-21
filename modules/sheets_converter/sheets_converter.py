@@ -33,5 +33,8 @@ class SheetsConverter:
         )
 
     def execute(self):
-        self._export_daily_sheets()
-        self._export_duplicate_sheet()
+        try:
+            self._export_daily_sheets()
+            self._export_duplicate_sheet()
+        except Exception as err:
+            raise err

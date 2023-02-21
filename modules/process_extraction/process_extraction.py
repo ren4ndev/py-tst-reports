@@ -52,21 +52,24 @@ class ProcessExtraction:
         """
         extracted_data = []
         for path in Path(self.pdf_directory).iterdir():
-            print('Procurando ocorrências no arquivo {}'.format(
-                path.parts[-1])
-            )
-            pdf_filename = re.split(r'[_.]', path.parts[-1])
-            sheet_date = '{}-{}-{}'.format(
-                pdf_filename[-4],
-                pdf_filename[-3],
-                pdf_filename[-2]
-            )
-            processes = self._extract(path)
-            extracted_data.append((sheet_date, processes))
+            if path.suffix == '.pdf':
+                print('Procurando ocorrências no arquivo {}'.format(
+                    path.parts[-1])
+                )
+                pdf_filename = re.split(r'[_.]', path.parts[-1])
+                sheet_date = '{}-{}-{}'.format(
+                    pdf_filename[-4],
+                    pdf_filename[-3],
+                    pdf_filename[-2]
+                )
+                processes = self._extract(path)
+                extracted_data.append((sheet_date, processes))
         return extracted_data
 
     def execute(self):
-        extracted_data = self._extract_data()
-        duplicates = self._extract_duplicates(extracted_data)
-
-        return (extracted_data, duplicates)
+        try:
+            extracted_data = self._extract_data()
+            duplicates = self._extract_duplicates(extracted_data)
+            return (extracted_data, duplicates)
+        except Exception as err:
+            raise err
