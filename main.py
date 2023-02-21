@@ -3,6 +3,8 @@ from modules.scraper.notebook_scraper import NotebookScraper
 from modules.process_extraction.process_extraction import ProcessExtraction
 from modules.sheets_converter.sheets_converter import SheetsConverter
 import os
+import io
+import sys
 import shutil
 
 
@@ -27,24 +29,18 @@ class MainScript:
             Responsável por executar todos os métodos do script
             de acordo com os requisitos do projeto
         """
-        dates_of_the_week = Dates.get_days_of_the_week()
+        buffer = io.StringIO()
+        sys.stdout = buffer
+        sys.stderr = buffer
 
-        # Para testes, caso não haja cadernos do TST na semana atual
-
-        # dates_of_the_week = [
-        #     '13/02/2023',
-        #     '14/02/2023',
-        #     '15/02/2023',
-        #     '16/02/2023',
-        #     '17/02/2023',
-        #     '18/02/2023',
-        #     '19/02/2023'
-        # ]
+        (week_start, week_end) = Dates.get_days_of_the_week()
+        print(week_start)
+        print(week_end)
 
         scraper = NotebookScraper(
             pdf_directory=self.pdf_path,
-            start_date=dates_of_the_week[0],
-            end_date=dates_of_the_week[-1]
+            start_date='13/02/2023',
+            end_date='19/02/2023'
         )
         scraper.execute()
         (extracted_data, duplicates) = ProcessExtraction(
