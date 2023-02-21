@@ -8,7 +8,7 @@
 - [x] Extrair os números de processo de cada caderno
 - [x] Gerar planilhas de saída com todos os números de processos separados por dia da semana
   - Ex. TST 13/10/2022.xlsx
-- [ ] Caso um processo apareça repetido em mais de um dia, gerar relatório de duplicatas com os respectivos processos e suas datas.
+- [x] Caso um processo apareça repetido em mais de um dia, gerar relatório de duplicatas com os respectivos processos e suas datas.
 
 - Fonte dos dados: https://dejt.jt.jus.br/dejt/f/n/diariocon
 
