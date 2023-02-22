@@ -37,7 +37,7 @@ Para configurar o projeto na sua máquina e compilar o executável para Windows,
 
 # Considerações finais
 
-- A complexidade do algoritmo para procura de duplicatas pode ser melhorada se for usado Pandas para o tratamento desses dados. Uma (solução)[https://stackoverflow.com/questions/75509175/is-there-any-function-in-pandas-to-find-duplicates-between-multiple-columns/75509263#75509263] foi discutida na comunidade do StackOverflow, porém não foi implementada, já que se aplica apenas para DataFrames com o mesmo número de dados por coluna. Para utilizar a solução apresentada, algumas alterações no algoritmo devem ser feitas e para tanto, será necessário estudo mais profundo da biblioteca pandas.
+- A complexidade do algoritmo para procura de duplicatas pode ser melhorada se for usado Pandas para o tratamento desses dados. Uma [solução](https://stackoverflow.com/questions/75509175/is-there-any-function-in-pandas-to-find-duplicates-between-multiple-columns/75509263#75509263) foi discutida na comunidade do StackOverflow, porém não foi implementada, já que se aplica apenas para DataFrames com o mesmo número de dados por coluna. Para utilizar a solução apresentada, algumas alterações no algoritmo devem ser feitas e para tanto, será necessário estudo mais profundo da biblioteca pandas.
 
 # Pontos para melhoria
 
